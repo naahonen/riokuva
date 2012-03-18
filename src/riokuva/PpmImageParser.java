@@ -12,10 +12,10 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author elmerfudd
+ * @author Jussi Kirjavainen
  */
 public class PpmImageParser {
-        final static int BUFFERSIZE = 8192;
+        
         private BufferedReader br;
         private static int width, height, maxcolours;
         private static int[] image;
