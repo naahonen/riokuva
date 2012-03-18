@@ -16,9 +16,19 @@ import java.util.StringTokenizer;
  */
 public class PpmImageParser {
         final static int BUFFERSIZE = 8192;
+        private BufferedReader br;
         private static int width, height, maxcolours;
         private static int[] image;
-      
+        
+        PpmImageParser(BufferedReader passedBufferedReader) {
+            this.br = passedBufferedReader;
+            parsePpmHeader();
+        }
+        
+        PpmImageParser(File passedFile) {
+            this.br = openBufferedReaderForFile(passedFile);
+        }
+        
     /**
      * @param args the command line arguments
      */
@@ -27,32 +37,57 @@ public class PpmImageParser {
         final long startTime = System.nanoTime();
         final String filename = args[0]; 
 
-        int[] kuva = readPpmImage(filename);
+        Runtime r = Runtime.getRuntime();
+        int ap = r.availableProcessors();
+        System.out.println("VM reports "+ap+" available processors");
+        
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        PpmImageParser pip = new PpmImageParser(br);
+        System.out.println(pip.toString());
+        
+        int[] kuva = pip.getPpmImageData();
 
         endTime = System.nanoTime();
         long readTime = (endTime - startTime)/1000000;
         System.out.println("read time (ms): " + readTime);
     }
         
-    public static int[] readPpmImage(String filename) {
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getMaxcolours() {
+        return maxcolours;
+    }
+    
+    public int[] getPpmImageData() {
+        parsePpmData();
+        return image;
+    }
+    
+    @Override
+    public String toString() {
+        return  "Width: "+this.getWidth()
+                +", height: "+this.getHeight()
+                +", maxcolours: "+this.getMaxcolours();
+    }
+    
+    private BufferedReader openBufferedReaderForFile(File file) {
         try {
-            File imageFile = new File(filename); 
-            BufferedReader br = new BufferedReader(new FileReader(imageFile), BUFFERSIZE);
-            
-            parsePpmHeader(br);
-
-            parsePpmData(br);
-            
-            return image;
-            
-        } catch (IOException e) {
+            BufferedReader newBr = new BufferedReader(new FileReader(file));
+            return newBr;
+        } catch(IOException e) {
             System.err.println(e);
         }
-        // jos jotain outoa tapahtui ilman poikkeusta
+        
         return null;
-    }   
+    }
     
-    private static void parsePpmHeader(BufferedReader br) {
+    private void parsePpmHeader() {
        int headerTemp;
      
        try {
@@ -76,12 +111,12 @@ public class PpmImageParser {
             } else throw new IOException("Maxcolours on negatiivinen!");
             
 
-    } catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e);
         }
     }
     
-    private static void parsePpmData(BufferedReader br) {
+    private void parsePpmData() {
         String s;  
         int j = 0;
         image = new int[width*height*3];
@@ -96,5 +131,9 @@ public class PpmImageParser {
                 } catch (IOException e) {
                     System.err.println(e);
             }
+    }
+    
+    private static void concParsePpmData(BufferedReader br) {
+        
     }
 }
