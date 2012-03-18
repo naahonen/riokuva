@@ -136,4 +136,27 @@ public class PpmImageParser {
     private static void concParsePpmData(BufferedReader br) {
         
     }
+    
+    
+    //bitshift operaatiot, jos kuva tallennetaan Integer-taulukkona
+    
+    public static int makePixel(int colorDepth, int r, int g, int b){
+        return (colorDepth << 24) + (r << 16) + (g << 8) + b;
+    }
+    
+    public static int getDepth(int pixel){
+        return ((pixel >> 24) & 0xFF);   
+    }
+    
+    public static int getR(int pixel){
+        return ((pixel >> 16) & 0xFF);   
+    }
+    
+    public static int getG(int pixel){
+        return ((pixel >> 8) & 0xFF);   
+    }
+    
+    public static int getB(int pixel){
+        return (pixel & 0xFF);   
+    }
 }
