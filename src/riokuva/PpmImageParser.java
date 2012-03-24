@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package riokuva;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,12 +8,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
-/**
- *
- * @author Jussi Kirjavainen
- */
 public class PpmImageParser {
-        
+    
         private BufferedReader br;
         private static int width, height, maxcolours;
         private static int[] image;
@@ -28,29 +22,6 @@ public class PpmImageParser {
         PpmImageParser(File passedFile) {
             this.br = openBufferedReaderForFile(passedFile);
         }
-        
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException {
-        final long endTime;
-        final long startTime = System.nanoTime();
-        final String filename = args[0]; 
-
-        Runtime r = Runtime.getRuntime();
-        int ap = r.availableProcessors();
-        System.out.println("VM reports "+ap+" available processors");
-        
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        PpmImageParser pip = new PpmImageParser(br);
-        System.out.println(pip.toString());
-        
-        int[] kuva = pip.getPpmImageData();
-
-        endTime = System.nanoTime();
-        long readTime = (endTime - startTime)/1000000;
-        System.out.println("read time (ms): " + readTime);
-    }
         
     public int getWidth() {
         return width;
@@ -76,7 +47,7 @@ public class PpmImageParser {
                 +", maxcolours: "+this.getMaxcolours();
     }
     
-    private BufferedReader openBufferedReaderForFile(File file) {
+        private BufferedReader openBufferedReaderForFile(File file) {
         try {
             BufferedReader newBr = new BufferedReader(new FileReader(file));
             return newBr;
@@ -137,26 +108,4 @@ public class PpmImageParser {
         
     }
     
-    
-    //bitshift operaatiot, jos kuva tallennetaan Integer-taulukkona
-    
-    public static int makePixel(int colorDepth, int r, int g, int b){
-        return (colorDepth << 24) + (r << 16) + (g << 8) + b;
-    }
-    
-    public static int getDepth(int pixel){
-        return ((pixel >> 24) & 0xFF);   
-    }
-    
-    public static int getR(int pixel){
-        return ((pixel >> 16) & 0xFF);   
-    }
-    
-    public static int getG(int pixel){
-        return ((pixel >> 8) & 0xFF);   
-    }
-    
-    public static int getB(int pixel){
-        return (pixel & 0xFF);   
-    }
 }
