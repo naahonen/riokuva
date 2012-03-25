@@ -1,0 +1,17 @@
+\select@language {finnish}
+\contentsline {chapter}{\numberline {1}Johdanto}{3}
+\contentsline {section}{\numberline {1.1}Alkusanat}{3}
+\contentsline {section}{\numberline {1.2}Teht\"av\"an m\"a\"arittely}{3}
+\contentsline {chapter}{\numberline {2}Ohjelma}{4}
+\contentsline {section}{\numberline {2.1}Toimintaperiaate}{4}
+\contentsline {section}{\numberline {2.2}Luokat}{4}
+\contentsline {subsection}{\numberline {2.2.1}Bitop.java}{4}
+\contentsline {subsection}{\numberline {2.2.2}ImageProcessingMain.java}{4}
+\contentsline {subsection}{\numberline {2.2.3}PixelImage.java}{4}
+\contentsline {subsection}{\numberline {2.2.4}PpmImageParser.java}{4}
+\contentsline {chapter}{\numberline {3}Testaus}{5}
+\contentsline {section}{\numberline {3.1}Testauksen p\"a\"am\"a\"ar\"at}{5}
+\contentsline {section}{\numberline {3.2}Testiluokat}{5}
+\contentsline {subsection}{\numberline {3.2.1}BitopTest.java}{5}
+\contentsline {chapter}{\numberline {4}Yhteenveto}{6}
+\contentsline {chapter}{\numberline {A}Liite}{7}
