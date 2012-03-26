@@ -14,4 +14,4 @@
 \contentsline {section}{\numberline {3.2}Testiluokat}{5}
 \contentsline {subsection}{\numberline {3.2.1}BitopTest.java}{5}
 \contentsline {chapter}{\numberline {4}Yhteenveto}{6}
-\contentsline {chapter}{\numberline {A}Liite}{7}
+\contentsline {chapter}{\numberline {A}Projects}{7}
